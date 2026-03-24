@@ -100,6 +100,14 @@ Recebe as features do pedido e retorna a predição de risco de cancelamento.
 }
 ```
 
+**Exemplo com curl:**
+
+```bash
+curl -X POST http://localhost:8000/ml/predict \
+  -H "Content-Type: application/json" \
+  -d '{"valor_pedido": 85.0, "hora_pedido": 20, "num_itens": 3, "historico_cancelamentos": 0, "distancia_entrega": 2.5}'
+```
+
 **Response:**
 
 ```json

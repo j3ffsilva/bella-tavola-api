@@ -6,6 +6,8 @@ O comentário "# TODO (e03)" marca onde o mock deve ser substituído
 pelo modelo real após o encontro 03.
 """
 
+import os
+
 import numpy as np
 from fastapi import APIRouter
 from model_utils import get_model
@@ -36,35 +38,16 @@ async def predict(input: PredictInput):
 
     model = get_model()
 
-    # ------------------------------------------------------------------
-    # TODO (e03): substituir o bloco mock pelo bloco real abaixo
-    # ------------------------------------------------------------------
-    # BLOCO REAL — descomente após publicar o modelo no Hub (e03)
-    #
-    # prediction = int(model.predict(features)[0])
-    # probability = float(model.predict_proba(features)[0][1])
-    # label = "cancelamento provável" if prediction == 1 else "pedido normal"
-    # model_version = os.environ.get("HF_REPO_ID", "desconhecido")
-    #
-    # return PredictOutput(
-    #     prediction=prediction,
-    #     probability=round(probability, 4),
-    #     label=label,
-    #     model_version=model_version,
-    # )
-    # ------------------------------------------------------------------
-
-    # BLOCO MOCK — remove após o e03
-    # Retorna sempre "pedido normal" com probabilidade baixa.
-    # Útil para testar o contrato da API antes do modelo existir.
-    _ = features  # evita warning de variável não usada
-    _ = model
+    prediction = int(model.predict(features)[0])
+    probability = float(model.predict_proba(features)[0][1])
+    label = "cancelamento provável" if prediction == 1 else "pedido normal"
+    model_version = os.environ.get("HF_REPO_ID", "desconhecido")
 
     return PredictOutput(
-        prediction=0,
-        probability=0.12,
-        label="pedido normal",
-        model_version="mock",
+        prediction=prediction,
+        probability=round(probability, 4),
+        label=label,
+        model_version=model_version,
     )
 
 

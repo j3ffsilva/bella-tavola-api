@@ -1,10 +1,13 @@
 fastapi==0.115.12
+python-dotenv
 uvicorn==0.34.0
 pydantic==2.11.1
 numpy==2.2.4
 # Necessário para o TestClient nos testes
 httpx==0.28.1
 pytest==8.3.5
-# Descomente após o encontro 03 (integração com Hugging Face Hub)
-# huggingface-hub==0.29.3
-# joblib==1.4.2
+# Integração com Hugging Face Hub
+huggingface-hub==0.29.3
+joblib==1.4.2
+pandas
+scikit-learn

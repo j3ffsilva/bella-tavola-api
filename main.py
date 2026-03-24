@@ -1,5 +1,8 @@
+from dotenv import load_dotenv
 from fastapi import FastAPI
 from routers import predict
+
+load_dotenv()
 
 app = FastAPI(
     title="Bella Tavola API",
